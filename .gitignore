@@ -1,0 +1,19 @@
+# Build output
+**/bin/
+**/obj/
+dist/
+*.user
+.vs/
+TestResults/
+
+# Local / private (tenant identifiers, MCP config, copied OutSystems agent plugin)
+.mcp.json
+.claude/
+docs/private/
+docs/demo-app-plan.md
+spec-driven-build/
+
+# Secrets — never commit
+*.env
+.env*
+appsettings.*.local.json

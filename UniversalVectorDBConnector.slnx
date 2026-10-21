@@ -1,0 +1,6 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/UniversalVectorDBConnector/UniversalVectorDBConnector.csproj" />
+    <Project Path="src/UniversalVectorDBConnector.UnitTests/UniversalVectorDBConnector.UnitTests.csproj" />
+  </Folder>
+</Solution>
