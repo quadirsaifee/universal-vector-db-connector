@@ -4,7 +4,7 @@
 [OutSystems Developer Cloud (ODC)](https://www.outsystems.com/developer-cloud/) external library.
 It also works as a plain .NET 10 library.
 
-> **Status: Preview (0.2.0, in development).** Implemented providers: **Qdrant** (Qdrant Cloud or self-hosted)
+> **Status: Preview (0.2.0).** Implemented providers: **Qdrant** (Qdrant Cloud or self-hosted)
 > and **Pinecone** (serverless, REST API `2026-07`). pgvector, Azure AI Search, Weaviate, Milvus/Zilliz,
 > Elasticsearch, MongoDB Atlas Vector Search and Redis are planned.
 
@@ -151,7 +151,8 @@ docs/                                  architecture and Forge listing
 
 ## Roadmap
 
-- 0.2: Pinecone (done), pgvector, Azure AI Search; logging; optional LangChain-compatible payload layout
+- 0.2 (released): Pinecone
+- 0.3: pgvector, Azure AI Search; logging; optional LangChain-compatible payload layout
   (`page_content` + `metadata`), so ODC apps and LangChain/LangGraph agents can share collections
 - Later: Weaviate, Milvus/Zilliz, Elasticsearch, MongoDB Atlas, Redis; hybrid and text search;
   async .NET API + NuGet package
