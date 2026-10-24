@@ -5,7 +5,7 @@ Asset: `UniversalVectorDBConnector` (External Library), version **0.2.0**.
 
 **Verified 2026-10-23 (local):** all 46 tests pass: unit tests, an offline fake of the Pinecone API, live Qdrant, and
 live Pinecone (serverless, aws us-east-1, Starter plan).
-**ODC smoke test (0.2.0):** _to fill in after the demo app runs TestConnection → CreateCollection → Upsert → Count against Pinecone._
+**ODC smoke test (0.2.0), passed 2026-10-23:** the demo app, running on the released 0.2.0 library, connected to Pinecone, created the collection, upserted 12 records, and Count showed 12.
 0.1.0 was verified on 2026-10-21 from the demo app against Qdrant Cloud (12 records upserted, count 12).
 
 ---
