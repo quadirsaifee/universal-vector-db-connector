@@ -30,6 +30,17 @@ namespace UniversalVectorDBConnector.Core
             return JsonValue.Create(UuidV5(id).ToString("D"))!;
         }
 
+        /// <summary>Pinecone ids must be 1-512 ASCII characters (no NUL). Other ids become "uvdb-" + UUIDv5.</summary>
+        public static string ToPineconeId(string id, out bool mapped)
+        {
+            if (string.IsNullOrWhiteSpace(id))
+            {
+                throw VdbException.Invalid("Record Id cannot be empty.");
+            }
+            mapped = id.Length > 512 || id.Any(ch => ch is '\0' or > '\x7F');
+            return mapped ? "uvdb-" + UuidV5(id).ToString("D") : id;
+        }
+
         public static Guid UuidV5(string name)
         {
             Span<byte> ns = stackalloc byte[16];

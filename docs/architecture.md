@@ -260,7 +260,7 @@ same on every provider.
 
 | Provider | Transport | Namespaces | Hybrid | Server-side embedding | Notes |
 |---|---|---|---|---|---|
-| Pinecone | REST (control + data plane host) | Native | Sparse-dense | Integrated indexes | Index build async; data-plane host from `describe_index` |
+| Pinecone | REST (control + data plane host) | Native | Sparse-dense | Integrated indexes | **Implemented in 0.2** on API `2026-07` (schema-based create with a `_values` dense field). Index build async; data-plane host from `describe_index`; ids ASCII ≤512; metadata flat; range filters numeric only; no filtered count on serverless |
 | Qdrant | REST | `_namespace` filter | Sparse vectors + fusion (Query API) | Cloud inference (verify) | Point IDs: int or UUID (§6.3) |
 | Weaviate | REST + GraphQL | Multi-tenancy | Native `hybrid` (alpha) | Vectorizer modules | Class names must start uppercase |
 | Milvus / Zilliz | REST v2 | Partition key | Hybrid search (multi-vector + rerank) | Text embedding functions (verify) | Collection must be loaded before search |
@@ -284,8 +284,9 @@ src/UniversalVectorDBConnector/                  # external library (net10.0)
 src/UniversalVectorDBConnector.UnitTests/        # xUnit v3, mocked HTTP
 src/UniversalVectorDBConnector.IntegrationTests/ # runs against local containers
 docker-compose.test.yml                 # qdrant, weaviate, milvus-standalone, pgvector,
-                                        # mongodb-atlas-local, elasticsearch, redis-stack,
-                                        # pinecone-local
+                                        # mongodb-atlas-local, elasticsearch, redis-stack
+                                        # (Pinecone Local reached end of life on 2026-10-07:
+                                        #  Pinecone uses an in-memory fake + live tests instead)
 docs/
 ```
 Local tooling confirmed on this machine: .NET SDK 10.0.402 and Docker 29.8.2.

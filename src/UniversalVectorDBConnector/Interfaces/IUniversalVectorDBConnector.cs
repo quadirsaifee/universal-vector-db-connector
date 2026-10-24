@@ -4,7 +4,7 @@ namespace UniversalVectorDBConnector
 {
     [OSInterface(
         Name = "UniversalVectorDBConnector",
-        Description = "One set of actions for vector databases: create collections, upsert, similarity search with metadata filters, fetch, count and delete. Version 0.1 supports Qdrant; Pinecone, pgvector, Azure AI Search, Weaviate, Milvus, Elastic, MongoDB Atlas and Redis are planned.",
+        Description = "One set of actions for vector databases: create collections, upsert, similarity search with metadata filters, fetch, count and delete. Version 0.2 supports Qdrant and Pinecone; pgvector, Azure AI Search, Weaviate, Milvus, Elastic, MongoDB Atlas and Redis are planned.",
         IconResourceName = "UniversalVectorDBConnector.Resources.icon.png")]
     public interface IUniversalVectorDBConnector
     {
