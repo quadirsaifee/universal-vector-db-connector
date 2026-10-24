@@ -20,17 +20,24 @@ namespace UniversalVectorDBConnector.Core
             Timeout = Timeout.InfiniteTimeSpan, // the call's CancellationToken enforces the budget
         };
 
+        /// <summary>Unit tests set this to a fake server. Scoped to the current call flow, so parallel tests don't interfere.</summary>
+        internal static readonly AsyncLocal<HttpMessageInvoker?> TestTransport = new();
+
         /// <summary>Sends a JSON request and returns the parsed body (null for an empty body).</summary>
+        /// <param name="baseUri">Server to call. Defaults to the connection endpoint (some providers use a second host per index).</param>
         public static JsonNode? Send(
             CallContext ctx,
             HttpMethod method,
             string pathAndQuery,
             JsonNode? body,
             Action<HttpRequestMessage> addHeaders,
-            Func<int, string, VdbException> mapError)
+            Func<int, string, VdbException> mapError,
+            Uri? baseUri = null)
         {
-            var url = new Uri(ctx.Endpoint, ctx.Endpoint.AbsolutePath.TrimEnd('/') + pathAndQuery);
+            var root = baseUri ?? ctx.Endpoint;
+            var url = new Uri(root, root.AbsolutePath.TrimEnd('/') + pathAndQuery);
             var payload = body?.ToJsonString();
+            var client = TestTransport.Value ?? Client;
 
             for (int attempt = 1; ; attempt++)
             {
@@ -45,7 +52,7 @@ namespace UniversalVectorDBConnector.Core
                 HttpResponseMessage response;
                 try
                 {
-                    response = Client.SendAsync(request, ctx.Token).GetAwaiter().GetResult();
+                    response = client.SendAsync(request, ctx.Token).GetAwaiter().GetResult();
                 }
                 catch (OperationCanceledException)
                 {

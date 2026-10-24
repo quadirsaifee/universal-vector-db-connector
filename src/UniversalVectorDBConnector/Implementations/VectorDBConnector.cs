@@ -1,6 +1,7 @@
 using System.Text.Json;
 using System.Text.Json.Nodes;
 using UniversalVectorDBConnector.Adapters;
+using UniversalVectorDBConnector.Adapters.Pinecone;
 using UniversalVectorDBConnector.Adapters.Qdrant;
 using UniversalVectorDBConnector.Core;
 
@@ -10,11 +11,12 @@ namespace UniversalVectorDBConnector
     public class VectorDBConnector : IUniversalVectorDBConnector
     {
         internal static readonly string[] PlannedProviders =
-            { "pinecone", "weaviate", "milvus", "pgvector", "mongodb", "azureaisearch", "elastic", "redis" };
+            { "weaviate", "milvus", "pgvector", "mongodb", "azureaisearch", "elastic", "redis" };
 
         private static readonly Dictionary<string, IVectorStoreAdapter> Adapters = new()
         {
             ["qdrant"] = new QdrantAdapter(),
+            ["pinecone"] = new PineconeAdapter(),
         };
 
 

@@ -6,7 +6,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <RootNamespace>UniversalVectorDBConnector</RootNamespace>
     <AssemblyName>UniversalVectorDBConnector</AssemblyName>
-    <Version>0.1.0</Version>
+    <Version>0.2.0</Version>
     <!-- No .pdb in the upload ZIP: it is sent inline as base64, so keep it small. -->
     <DebugType Condition="'$(Configuration)' == 'Release'">none</DebugType>
   </PropertyGroup>

@@ -5,10 +5,10 @@ namespace UniversalVectorDBConnector
     [OSStructure(Description = "How to reach a vector database. Pass it to every action.")]
     public struct VdbConnection
     {
-        [OSStructureField(Description = "Provider id. Supported in 0.1: qdrant. Planned: pinecone, weaviate, milvus, pgvector, mongodb, azureaisearch, elastic, redis.", IsMandatory = true)]
+        [OSStructureField(Description = "Provider id. Supported in 0.2: qdrant, pinecone. Planned: pgvector, azureaisearch, weaviate, milvus, mongodb, elastic, redis.", IsMandatory = true)]
         public string Provider { get; set; }
 
-        [OSStructureField(Description = "Base URL of the database, e.g. https://xyz.cloud.qdrant.io:6333", IsMandatory = true)]
+        [OSStructureField(Description = "Base URL of the database, e.g. https://xyz.cloud.qdrant.io:6333 for Qdrant or https://api.pinecone.io for Pinecone.", IsMandatory = true)]
         public string Endpoint { get; set; }
 
         [OSStructureField(Description = "API key. Store it in a secret Setting; it is never logged.")]
@@ -20,7 +20,7 @@ namespace UniversalVectorDBConnector
         [OSStructureField(Description = "Time budget for the whole call, including retries. Default 30, maximum 85.")]
         public int TimeoutSeconds { get; set; }
 
-        [OSStructureField(Description = "Optional provider-specific options as a JSON object, e.g. {\"allowInsecure\":true} for local http testing.")]
+        [OSStructureField(Description = "Optional provider-specific options as a JSON object, e.g. {\"allowInsecure\":true} for local http testing. Pinecone: {\"cloud\":\"aws\",\"region\":\"us-east-1\",\"deletionProtection\":false} for CreateCollection.")]
         public string OptionsJson { get; set; }
     }
 

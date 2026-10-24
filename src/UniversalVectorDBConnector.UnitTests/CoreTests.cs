@@ -169,7 +169,7 @@ namespace UniversalVectorDBConnector.UnitTests
         [Fact]
         public void UnknownProvider_ReturnsUnsupportedStatus()
         {
-            _sut.ListCollections(new VdbConnection { Provider = "pinecone", Endpoint = "https://x.io" }, out var status, out var names);
+            _sut.ListCollections(new VdbConnection { Provider = "weaviate", Endpoint = "https://x.io" }, out var status, out var names);
             Assert.False(status.Success);
             Assert.Equal("Unsupported", status.ErrorCode);
             Assert.Contains("planned", status.ErrorMessage);
@@ -204,7 +204,8 @@ namespace UniversalVectorDBConnector.UnitTests
         public void Capabilities()
         {
             Assert.True(_sut.GetCapabilities("Qdrant").Implemented);
-            Assert.False(_sut.GetCapabilities("pinecone").Implemented);
+            Assert.True(_sut.GetCapabilities("pinecone").Implemented);
+            Assert.False(_sut.GetCapabilities("weaviate").Implemented);
         }
 
         [Fact]
